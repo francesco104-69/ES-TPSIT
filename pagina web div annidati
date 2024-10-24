@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Errori di Software Famosi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .item {
+            display: flex;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+        }
+        .photo {
+            flex: 1;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .photo img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .description {
+            flex: 2;
+            padding: 20px;
+        }
+        .description h2 {
+            margin: 0 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Errori di Software Famosi</h1>
+    <div class="container">
+
+        <div class="item">
+            <div class="photo">
+                <img src="https://www.rainews.it/cropgd/414x237/dl/img/2023/04/13/1681375384703_SON_Bettini_JUICE__aprile_mattina.transferframe.jpg">
+            </div>
+            <div class="description">
+                <h2>Ariane 5</h2>
+                <p>Il lancio inaugurale del razzo Ariane 5 dell'Agenzia Spaziale Europea fallì a causa di un bug nel software. Il sistema di navigazione riutilizzava codice dall'Ariane 4, che non era stato adattato ai cambiamenti delle prestazioni del nuovo razzo.
+                   Ciò provocò un errore di overflow in una conversione di un numero a virgola mobile. Il razzo deviò dalla sua rotta e fu distrutto.
+                   Perdita di un razzo da 370 milioni di dollari e di carichi utili scientifici di alto valore..</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="photo">
+                <img src="https://solarviews.com/thumb/craft/mco1.jpg" >
+            </div>
+            <div class="description">
+                <h2>Mars Climate Orbiter</h2>
+                <p>Questo errore si verificò perché il software che controllava il sistema di navigazione del Mars Climate Orbiter utilizzava unità imperiali (libbre-forza secondi) invece di unità metriche (newton secondi). La sonda entrò nell'atmosfera di Marte troppo bassa e fu distrutta.
+                    Perdita della sonda spaziale e della missione.</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="photo">
+                <img src="https://smartcdn.gprod.postmedia.digital/financialpost/wp-content/uploads/2012/08/0807knight.jpg?quality=90&strip=all&w=288&h=216&sig=NSF9cycNYn2Dv96zy5cgsw" >
+            </div>
+            <div class="description">
+                <h2>Knight Capital</h2>
+                <p> Knight Capital, una grande società di trading finanziario, installò un aggiornamento del software difettoso su uno dei suoi server. Questo software iniziò a fare milioni di operazioni di borsa errate, facendo crollare il prezzo delle azioni. L'azienda perse circa 440 milioni di dollari in meno di un'ora e fu successivamente acquisita.
+                    Perdita finanziaria enorme e fine dell'azienda come entità indipendente.</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="photo">
+                <img src="https://i.redd.it/5foqs9f4ez2d1.jpeg"  >
+            </div>
+            <div class="description">
+                <h2>Therac-25</h2>
+                <p> Therac-25 era una macchina per la radioterapia utilizzata negli ospedali. A causa di bug nel software, in alcune circostanze la macchina somministrava dosi di radiazioni letali ai pazienti. Il bug si manifestava solo in determinate sequenze operative, quindi non fu scoperto subito.
+                    Almeno 5 persone morirono e molte altre subirono gravi lesioni a causa di sovraesposizione alle radiazioni.</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="photo">
+                <img src="https://www.shutterstock.com/image-illustration/szczecin-polandoctober-2022mim104-patriot-us-260nw-2235050941.jpg"  >
+            </div>
+            <div class="description">
+                <h2> Patriot Missile</h2>
+                <p> Un errore di arrotondamento in un sistema di temporizzazione del software del Patriot Missile causò il fallimento dell'intercettazione di un missile Scud iracheno. Il missile colpì una caserma dell'esercito statunitense, uccidendo 28 soldati.
+                    Perdita di vite umane e di fiducia nella tecnologia di difesa.</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="photo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJYhKayGRuKpNE9y22x0U_Uo1zqy41qI1b2A&s"  >
+            </div>
+            <div class="description">
+                <h2>Millennium Bug</h2>
+                <p> Sebbene non ci sia stata una grande catastrofe, il "Millennium Bug" ha richiesto investimenti massicci per evitare il collasso dei sistemi informatici. Il bug era causato dal fatto che molti software utilizzavano solo le ultime due cifre dell'anno (es. '99 per 1999), il che poteva portare a malfunzionamenti passando all'anno 2000.
+                    Anche se il bug non causò gravi danni, il costo per la prevenzione fu enorme.</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="photo">
+                <img src="https://2.allegroimg.com/s512/03c7a6/2d1691224dbd87eacb530f8dbb12/Intel-Pentium-4-661-3-60GHz-2M-800"  >
+            </div>
+            <div class="description">
+                <h2>Intel Pentium</h2>
+                <p>Un bug nei processori Intel Pentium causava errori di calcolo nelle divisioni in virgola mobile. Questo difetto divenne un problema di pubbliche relazioni per Intel dopo che gli scienziati iniziarono a notare discrepanze nei loro calcoli. Intel alla fine dovette ritirare i processori difettosi e rimborsare i clienti.
+                    Costi enormi di sostituzione e danno alla reputazione di Intel.</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="photo">
+                <img src="https://i.blogs.es/efcca7/screenshot/450_1000.jpg"  >
+            </div>
+            <div class="description">
+                <h2>Tesla Modem S</h2>
+                <p>Un aggiornamento del software del Tesla Model S causò il blocco dei freni a mano di alcune auto. In un caso, questo portò all'incendio e alla perdita completa di un'auto.
+                    Danni materiali e possibili rischi per la sicurezza.</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="photo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/AT%26T_logo_2016.svg"  >
+            </div>
+            <div class="description">
+                <h2>Software Difettoso</h2>
+                <p>Un aggiornamento software difettoso nel sistema di commutazione di AT&T portò a un blocco che durò circa 9 ore. Durante questo periodo, milioni di chiamate telefoniche furono interrotte negli Stati Uniti.
+                    Danno alla reputazione e perdite finanziarie per AT&T, oltre a disagio per milioni di utenti.</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="photo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfQApa71eslsA8Of7QwM7cryQgAndoyd78rg&s"  >
+            </div>
+            <div class="description">
+                <h2>Boeing 737 MAX</h2>
+                <p>Il sistema MCAS (Maneuvering Characteristics Augmentation System) del Boeing 737 Max, progettato per correggere il comportamento di volo dell'aereo, aveva un bug che portava a una serie di incidenti aerei mortali. Questo errore portò alla perdita di controllo degli aerei in determinate situazioni, causando due incidenti fatali che uccisero 346 persone.
+                    La Boeing subì gravi perdite economiche, danni alla reputazione e costi enormi per riparare il software e certificare nuovamente il modello. L’aereo fu bloccato a terra per quasi due anni.</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
