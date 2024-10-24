@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link ai Siti Preferiti</title>
+    <style>
+        .container {
+            width: 400px; /* Puoi modificare le dimensioni */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        a {
+            display: block;
+            margin: 10px 0;
+            text-decoration: none;
+            color: #0066cc;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <h2>I Miei Siti Preferiti</h2>
+    <a href="https://openai.com/index/chatgpt/" target="_blank">ChatGpt</a>
+    <p>Intelligenza aritficiale utile in caso di dubbi o problemi.</p>
+   
+    <a href="https://github.com/" target="_blank">GitHub</a>
+    <p>Una piattaforma per lo sviluppo collaborativo di software.</p>
+   
+    <a href="https://www.twitch.tv/" target="_blank">Twitch</a>
+    <p>piattaforma di streaming .</p>
+   
+    <a href="https://www.reddit.com" target="_blank">Reddit</a>
+    <p>Un sito di social news e discussioni su vari argomenti.</p>
+   
+    <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+    <p>Una piattaforma di blogging con articoli su vari temi.</p>
+   
+    <a href="https://www.youtube.com/" target="_blank">youtube</a>
+    <p>piattaforma per vedere e caricare video.</p>
+   
+    <a href="https://www.coursera.org" target="_blank">Coursera</a>
+    <p>Corsi online offerti da università e istituzioni di prestigio.</p>
+   
+    <a href="https://www.ted.com" target="_blank">TED</a>
+    <p>Video di conferenze su idee innovative e ispiratrici.</p>
+   
+    <a href="https://www.codecademy.com" target="_blank">Codecademy</a>
+    <p>Piattaforma interattiva per imparare a programmare.</p>
+   
+    <a href="https://www.nytimes.com" target="_blank">The New York Times</a>
+    <p>Una delle principali fonti di notizie e approfondimenti globali.</p>
+</div>
+
+
+</body>
+</html>
