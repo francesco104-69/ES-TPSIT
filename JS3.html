@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+   
+<title>Aforismi di Scienziati</title>
+    <style>
+
+        .body{
+            font-family: Arial, sans-serif;
+            background-color: #43343400;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .text{
+            background-color: rgb(220, 27, 27);
+            border: 5px;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+       
+
+        .aforisma {
+            background-color:rgba(11, 11, 11, 0);
+            margin: 30px;
+            padding: 20px;
+            border: 5px solid rgb(92, 79, 79);
+            border-radius: 6px; 
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="aforisma">
+        <p id="aforisma1">"La scienza è un modo di pensare più che un corpo di conoscenze." - Carl Sagan</p>
+
+<button onclick="nascondiTesto('aforisma1')">Nascondi</button>  
+</div>
+
+<div class="aforisma">
+        
+     
+<p id="aforisma2">"Non tutto ciò che può essere contato conta, e non tutto ciò che conta può essere contato." - Albert Einstein</p>
+        
+ 
+<button onclick="nascondiTesto('aforisma2')">Nascondi</button>
+    
+</div>
+
+<div class="aforisma">      
+<p id="aforisma3">"La natura non è mai stata così benevola con gli uomini come negli ultimi secoli." - Isaac Newton</p>
+        
+<button onclick="nascondiTesto('aforisma3')">Nascondi Testo</button>
+</div>
+
+<div class="aforisma">  
+<p id="aforisma4">"La scienza non è solo una disciplina, è un modo di pensare." - Carl Sagan</p>
+        
+<button onclick="nascondiTesto('aforisma4')">Nascondi Testo</button> 
+</div>
+
+<div class="aforisma">
+        
+   
+<p id="aforisma5">"Ogni scienziato deve essere pronto a cambiare la propria teoria per adattarla ai fatti." - Richard Feynman</p>
+        <button onclick="nascondiTesto('aforisma5')">Nascondi Testo</button>
+</div>
+
+
+<script>
+        
+
+        function nascondiTesto(id) {
+            const testo = document.getElementById(id);
+            testo.style.display = "none";  
+            
+        }
+    </script>
+
+</b>
+ 
+</html
