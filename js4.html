@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+     
+    <title>Calcolo Dislivello</title>
+    <style>
+        body { 
+        font-family: Arial, sans-serif; 
+        }
+        .container {
+          max-width: 400px;
+          margin: auto; 
+          padding: 20px; 
+          border: 1px solid #ddd; 
+          border-radius: 10px; 
+        }
+        label, input { 
+            display: block; 
+            width: 100%; 
+            margin-bottom: 10px; 
+        }
+        button { 
+            width: 100%; 
+            padding: 10px; 
+            background-color: #dd0b0b; 
+            color: rgb(18, 3, 3); border: none;
+            border-radius: 10px; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Calcolo del Dislivello Totale</h2>
+    
+    <label for="start">Punto di partenza (m):</label>
+    <input type="number" id="start" required>
+    
+    <label for="pause">Altezza Pausa pranzo (m):</label>
+    <input type="number" id="pause" required>
+    
+    <label for="end"> Punto di arrivo (m):</label>
+    <input type="number" id="end" required>
+    
+    <button onclick="calcolaDislivello()">Calcola Dislivello</button>
+
+    <h3>Risultato:</h3>
+    <p id="output"></p>
+</div>
+
+<script>
+    function calcolaDislivello() {
+         
+        const start =  (document.getElementById("start").value);
+        const pause =  (document.getElementById("pause").value);
+        const end =  (document.getElementById("end").value);
+
+        
+        const dislivelloIniziale = Math.abs(pause - start);
+        const dislivelloFinale = Math.abs(end - pause);
+        const dislivelloTotale = dislivelloIniziale + dislivelloFinale;
+
+         
+        document.getElementById("output").innerText = `Dislivello totale: ${dislivelloTotale} metri`;
+    }
+</script>
+
+</body>
+</html>
