@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morra Cinese VS Bot</title>
+    <style>
+        /* Rimuovi tutti gli stili avanzati */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 100px;
+            background-image: url("https://st2.depositphotos.com/1175677/12327/v/450/depositphotos_123277816-stock-illustration-black-wood-background-wallpaper-backdrop.jpg");
+            
+        }
+        h1, h2 {
+            text-align: center;
+            color: beige;
+            font-size: 50px;
+        }
+        #gioco {
+            text-align: center;
+            color: azure;
+            font-size: 30px;
+        }
+        #out2 {
+            font-size: 25px;
+            color: rgb(219, 202, 202);
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        #timer {
+            font-size: 40px;
+            font-weight: normal;
+            color: azure;
+            
+        }
+        #score {
+            font-size: 30px;
+            color: azure;
+            
+        }
+        
+    </style>
+</head>
+<body>
+
+    <h1>Gioco Morra Cinese</h1>
+
+    <div id="gioco">
+        <p id="out1">Scegli la tua mossa:</p>
+        <img src="https://www.fioriraungiardino.com/images/1683016116.jpg" alt="Pietra" id="pietra" />
+        <img src="https://borgione.kleecks-cdn.com/media/catalog/product/cache/97fd31ef810ac8d4b9a5bb9813b996a1/1/4/145107_1.jpg" alt="Carta" id="carta" />
+        <img src="https://www.montalbanostore.it/wp-content/uploads/2013/02/Linea-forbici-microdentata-M452.jpg" alt="Forbice" id="forbice" />
+        
+        <p id="out2"></p>
+        <p id="timer"></p>
+
+        <h2>Punteggio:</h2>
+        <p id="score">0 - 0</p>
+    </div>
+
+<script>
+    let morra = ["pietra", "carta", "forbice"];
+    let scoreUser = 0;
+    let scoreBot = 0;
+    let numeroCasuale;
+    let timer;
+
+    // Funzione per calcolare il risultato della partita
+    function morraScore(userChoice, botChoice) {
+        if (userChoice === botChoice) {
+            return "Pareggio!";
+        } else if (
+            (userChoice === "pietra" && botChoice === "forbice") ||
+            (userChoice === "carta" && botChoice === "pietra") ||
+            (userChoice === "forbice" && botChoice === "carta")
+        ) {
+            scoreUser++;
+            return "Hai vinto!";
+        } else {
+            scoreBot++;
+            return "Hai perso!";
+        }
+    }
+
+    // Funzione per generare una scelta casuale del bot
+    function getBotChoice() {
+        numeroCasuale = Math.floor(Math.random() * 3);
+        return morra[numeroCasuale];
+    }
+
+    // Funzione per gestire il timer e il risultato
+    function startGame(userChoice) {
+        let counter = 3;
+        let timerDisplay = document.getElementById("timer");
+        timerDisplay.innerHTML = `Inizio tra ${counter}...`;
+        
+        timer = setInterval(() => {
+            counter--;
+            timerDisplay.innerHTML = `Inizio tra ${counter}...`;
+            if (counter === 0) {
+                clearInterval(timer);
+                let botChoice = getBotChoice();
+                let result = morraScore(userChoice, botChoice);
+
+                document.getElementById("out2").innerHTML = 
+                    `Bot ha scelto: ${botChoice}. ${result}`;
+
+                document.getElementById("score").innerHTML = `${scoreUser} - ${scoreBot}`;
+            }
+        }, 1000);
+    }
+
+    // Ascoltatore per le immagini cliccabili
+    document.getElementById("pietra").onclick = function() {
+        startGame("pietra");
+    };
+    document.getElementById("carta").onclick = function() {
+        startGame("carta");
+    };
+    document.getElementById("forbice").onclick = function() {
+        startGame("forbice");
+    };
+
+</script>
+
+</body>
+</html>
+
