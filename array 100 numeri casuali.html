@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array 1</title>
+
+<style>
+
+    #container{
+        height: 200px;
+        width: 500px;
+        display: inline-block;
+    }
+</style>
+
+</head>
+<body>
+
+    <h1>Array esercizio 1</h1>
+
+    <p>Lista elementi:</p>
+
+    <div id="container">
+    <p id="out1"></p>
+     </div>
+
+    <script>
+        // Array vuoto
+        let numeri = [];
+
+        // Funzione per riempire l'array con numeri casuali
+        RiempiArrayConNumeriCasuali();
+
+        // Visualizza i numeri generati
+        document.getElementById("out1").innerHTML = numeri.join(", ");
+
+        function RiempiArrayConNumeriCasuali() {
+            for (let i = 0; i < 100; i++) {
+                numeri[i] = Math.floor(Math.random() * 101); // Numeri casuali tra 0 e 100
+            }
+        }
+
+    </script>
+   
+</body>
+</html>
