@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array e Temporizzatore</title>
+
+<style>
+    body {
+        background-color: #2c2c2c;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+    }
+
+    #container {
+        height: 200px;
+        width: 500px;
+        display: inline-block;
+    }
+</style>
+
+</head>
+<body>
+
+    <h1>Array e Temporizzatore</h1>
+
+    <p>Lista elementi:</p>
+
+    <div id="container">
+        <p id="out1"></p>
+    </div>
+
+    <p>Media numeri:</p>
+    <div id="media">
+        <p id="out2"></p>
+    </div>
+
+    <p>Prossima estrazione in: <span id="timer">3</span> secondi</p>
+    <div>
+        <p>Ultimo numero estratto: <span id="ultimoNumero">-</span></p>
+    </div>
+
+    <script>
+        // Array vuoto per memorizzare i numeri estratti
+        let numeri = [];
+
+        // Timer iniziale
+        let countdown = 3;
+        let timerElement = document.getElementById("timer");
+        let ultimoNumeroElement = document.getElementById("ultimoNumero");
+
+        // Funzione per aggiornare il timer e generare un numero casuale
+        setInterval(() => {
+            if (countdown === 0) {
+                let numeroCasuale = Math.floor(Math.random() * 91); // Numeri casuali tra 0 e 90
+                numeri.push(numeroCasuale);
+
+                // Aggiorna la lista dei numeri estratti
+                document.getElementById("out1").innerHTML = numeri.join(", ");
+
+                // Calcola e aggiorna la media
+                document.getElementById("out2").innerHTML = CalcolaMedia(numeri).toFixed(2);
+
+                // Aggiorna l'ultimo numero estratto
+                ultimoNumeroElement.innerHTML = numeroCasuale;
+
+                // Resetta il timer
+                countdown = 3;
+            } else {
+                countdown--;
+            }
+
+            // Aggiorna il display del timer
+            timerElement.innerHTML = countdown;
+        }, 1000);
+
+        // Funzione per calcolare la media dei numeri nell'array
+        function CalcolaMedia(array) {
+            if (array.length === 0) return 0;
+            let somma = array.reduce((acc, num) => acc + num, 0);
+            return somma / array.length;
+        }
+
+    </script>
+   
+</body>
+</html>
