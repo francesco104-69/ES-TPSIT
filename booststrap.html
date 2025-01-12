@@ -13,20 +13,29 @@
         font-family: 'Poppins', sans-serif;
       }
       .navbar {
-        background-color: #2b2b2b;
+        background-color: #444040;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 20px;
+        padding: 15px 20px;
       }
+
       .navbar-brand {
         display: flex;
         align-items: center;
+        font-size: 2.5rem;  
+        font-weight: bold;
+        color: #ffcc00;  
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);  
       }
+
       .navbar-brand img {
-        margin-right: 10px;
+        margin-right: 15px;
+        width: 60px;  
+        height: 60px;
       }
-      /* Modifica della barra di ricerca */
+
       .search-bar {
         width: 40%;
         display: flex;
@@ -35,8 +44,9 @@
         border-radius: 50px;
         overflow: hidden;
         background-color: #1e1e1e;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 6px rgba(108, 103, 103, 0.2);
       }
+
       .search-bar input {
         width: 85%;
         padding: 10px;
@@ -47,9 +57,11 @@
         color: #fff;
         font-size: 16px;
       }
+
       .search-bar input::placeholder {
         color: #bbb;
       }
+
       .search-bar button {
         background-color: #ffcc00;
         border: none;
@@ -58,12 +70,15 @@
         border-radius: 0 50px 50px 0;
         cursor: pointer;
       }
+
       .search-bar button:hover {
         background-color: #e6b800;
       }
+
       .search-bar input:focus {
         background-color: #333;
       }
+
       .card {
         background-color: #1e1e1e;
         border: none;
@@ -71,66 +86,92 @@
         overflow: hidden;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
       }
+
       .card-title {
-        color: #ffcc00;
+        color: #edc70b;
         font-weight: bold;
       }
-      }
+
       .btn-primary {
-        background-color: #ffcc00;
+        background-color: #733f0a;
         border: none;
         font-weight: bold;
       }
+
       .btn-primary:hover {
-        background-color: #e6b800;
+        background-color: #dad2d2;
       }
+
       .carousel {
-        max-width: 60%;
-        height: 400px;
+        max-width: 80%;
+        height: 450px;
         margin: auto;
         border-radius: 15px;
         overflow: hidden;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
       }
+
       .carousel img {
-        height: 400px;
+        height: 450px;
         object-fit: cover;
       }
+
       .carousel-caption {
         background: rgba(0, 0, 0, 0.6);
         border-radius: 10px;
         padding: 10px 15px;
       }
-      .carousel-control-prev-icon, .carousel-control-next-icon {
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
         filter: invert(1);
       }
+
       .carousel-control-prev-icon,
       .carousel-control-next-icon {
         background-color: white;
         border-radius: 50%;
         padding: 10px;
       }
+
       .icon-grid {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
         justify-content: center;
       }
+
       .icon-grid .card {
         width: 20rem;
         text-align: center;
       }
+
       .icon-grid img {
         border-bottom: 2px solid #ffcc00;
       }
+
+       
+      .blockquote p {
+        font-size: 50px; 
+        font-weight: bold;
+        color: #a48e62;
+      }
+
+      .blockquote-footer {
+        font-size: 15px;  
+        font-weight: bold;
+        color: #e7e6e3;
+      }
     </style>
+
+ 
 
     <title>Standly Pizza Palace</title>
   </head>
   <body>
     <nav class="navbar">
       <a class="navbar-brand" href="#">
-        <img src="https://media.istockphoto.com/id/1159961065/vector/pizza-with-crossed-fork-and-knife-logo-design.jpg?s=612x612&w=0&k=20&c=5XSD9qCHNCzUYwG09nMieSNJed6uXRQ3kBaEP84yQcQ=" alt="" width="30" height="24">
+        <img src="https://media.istockphoto.com/id/1159961065/vector/pizza-with-crossed-fork-and-knife-logo-design.jpg?s=612x612&w=0&k=20&c=5XSD9qCHNCzUYwG09nMieSNJed6uXRQ3kBaEP84yQcQ=" alt="logo" width="30" height="24">
         <span>Standly Pizza Palace</span>
       </a>
       <div class="search-bar">
@@ -139,10 +180,33 @@
       </div>
     </nav>
 
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Scopri di più!
+      </button>
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li><a class="dropdown-item active" href="#">Menù</a></li>
+        <li><a class="dropdown-item" href="#">I nostri Interni</a></li>
+        <li><a class="dropdown-item" href="#">Pizza d'asporto</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Altro!</a></li>
+      </ul>
+    </div>
+    
+     
+
     <div class="container my-5 text-center">
-      <h1>Pizza Emozionante!</h1>
-      <p class="lead">Concediti ora una favolosa pausa ricca di gusto ed emozioni per il tuo palato. Vieni a provare le nostre Pizze. NE FACCIAMO DI TUTTI I GUSTI!</p>
-      <button type="button" class="btn btn-primary">Ordina Subito!</button>
+
+      <figure class="text-center">
+        <blockquote class="blockquote">
+          <p>Pizza Emozionante!</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          Concediti ora una favolosa pausa ricca di gusto ed emozioni per il tuo palato. Vieni a provare le nostre Pizze. NE FACCIAMO DI TUTTI I GUSTI! 
+        </figcaption>
+      </figure>
+
+      <button  type="button" class="btn btn-primary">Ordina Subito!</button>
       <button type="button" class="btn btn-secondary">Contattaci</button>
 
       <div id="carouselExampleControls" class="carousel slide my-4" data-bs-ride="carousel">
@@ -178,6 +242,7 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+
 
       <div class="container">
         <div class="icon-grid">
@@ -238,6 +303,25 @@
         </div>
       </div>
     </div>
+
+    
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="center">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Wl9E6mVHfJ7SkHjha6IOZQ3iQQVRdfWlH7O/+ErUmKkZ0x" crossorigin="anonymous"></script>
   </body>
