@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -9,11 +9,11 @@
     <style>
       body {
         background: url('https://st2.depositphotos.com/1175677/12327/v/450/depositphotos_123277816-stock-illustration-black-wood-background-wallpaper-backdrop.jpg') repeat;
-        color: #ffffff;
+        color: #0e0d0d;
         font-family: 'Poppins', sans-serif;
       }
       .navbar {
-        background-color: #444040;
+        background-color: #0202029d;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -54,12 +54,12 @@
         border-radius: 50px 0 0 50px;
         outline: none;
         background-color: transparent;
-        color: #fff;
+        color: #1f1c1c;
         font-size: 16px;
       }
 
       .search-bar input::placeholder {
-        color: #bbb;
+        color: #b1a613;
       }
 
       .search-bar button {
@@ -80,11 +80,12 @@
       }
 
       .card {
-        background-color: #1e1e1e;
+        background-color: #111010d5;
         border: none;
         border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 6px rgba(134, 133, 133, 0.3);
+        color: #e7e6e3;
       }
 
       .card-title {
@@ -93,22 +94,43 @@
       }
 
       .btn-primary {
-        background-color: #733f0a;
+        background-color: #9e9696dc;
+        color: black;
         border: none;
         font-weight: bold;
       }
 
       .btn-primary:hover {
-        background-color: #dad2d2;
+        background-color: #1b1a1ada;
+        color:white;
       }
-
+      .btn-secondary {
+        background-color: #d8b133dc;
+        color: black;
+        border: none;
+        font-weight: bold;
+      }
+      .btn-secondary:hover {
+        background-color: #0f0f0fda;
+        color:white;
+      }
+      .btn-third {
+        background-color: #d8b133dc;
+        color: black;
+        border: none;
+        font-weight: bold;
+      }
+      .btn-third:hover {
+        background-color: #0f0f0fda;
+        color:white;
+      }
       .carousel {
-        max-width: 80%;
+        max-width: 200%;
         height: 450px;
         margin: auto;
-        border-radius: 15px;
+        border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.466);
       }
 
       .carousel img {
@@ -129,8 +151,8 @@
 
       .carousel-control-prev-icon,
       .carousel-control-next-icon {
-        background-color: white;
-        border-radius: 50%;
+        background-color: rgba(41, 39, 39, 0.842);
+        border-radius: 60%;
         padding: 10px;
       }
 
@@ -154,13 +176,28 @@
       .blockquote p {
         font-size: 50px; 
         font-weight: bold;
-        color: #a48e62;
+        color: #d6c149;
       }
 
       .blockquote-footer {
         font-size: 15px;  
         font-weight: bold;
         color: #e7e6e3;
+      }
+      .pagination {
+        justify-content: center;
+        margin-top: 40px;
+      }
+
+      .pagination .page-item .page-link {
+        border-radius: 50px;
+        background-color: #444;
+        color: #fff;
+        transition: background-color 0.3s ease;
+      }
+
+      .pagination .page-item .page-link:hover {
+        background-color: #ffcc00;
       }
     </style>
 
@@ -171,7 +208,8 @@
   <body>
     <nav class="navbar">
       <a class="navbar-brand" href="#">
-        <img src="https://media.istockphoto.com/id/1159961065/vector/pizza-with-crossed-fork-and-knife-logo-design.jpg?s=612x612&w=0&k=20&c=5XSD9qCHNCzUYwG09nMieSNJed6uXRQ3kBaEP84yQcQ=" alt="logo" width="30" height="24">
+        
+<img src="https://media.istockphoto.com/id/1159961065/vector/pizza-with-crossed-fork-and-knife-logo-design.jpg?s=612x612&w=0&k=20&c=5XSD9qCHNCzUYwG09nMieSNJed6uXRQ3kBaEP84yQcQ=" alt="logo" width="30" height="24">
         <span>Standly Pizza Palace</span>
       </a>
       <div class="search-bar">
@@ -180,18 +218,7 @@
       </div>
     </nav>
 
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Scopri di più!
-      </button>
-      <ul class="dropdown-menu dropdown-menu-dark">
-        <li><a class="dropdown-item active" href="#">Menù</a></li>
-        <li><a class="dropdown-item" href="#">I nostri Interni</a></li>
-        <li><a class="dropdown-item" href="#">Pizza d'asporto</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Altro!</a></li>
-      </ul>
-    </div>
+     
     
      
 
@@ -212,7 +239,7 @@
       <div id="carouselExampleControls" class="carousel slide my-4" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="https://media.istockphoto.com/id/1442417585/it/foto/persona-che-ottiene-un-pezzo-di-pizza-ai-peperoni-di-formaggio.jpg?s=612x612&w=0&k=20&c=bNA59lgVMI1BUH-ndoHFi_NqCFTaRj9Je65cEcnyI-8=" class="d-block w-100" alt="Pizza">
+            <img src="https://images.pexels.com/photos/15832883/pexels-photo-15832883/free-photo-of-pizza-pasto-fotografia-di-cibo-cotto-in-forno.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="Pizza">
             <div class="carousel-caption d-none d-md-block">
               <h5>Gusto Unico</h5>
               <p>Un'esplosione di sapori in ogni morso!</p>
@@ -252,7 +279,7 @@
             <div class="card-body">
               <h5 class="card-title">Pizza Margherita</h5>
               <p class="card-text">La semplicità della tradizione con mozzarella e pomodoro.</p>
-              <a href="#" class="btn btn-primary">Scopri di più</a>
+              <a href="#" class="btn btn-third">Scopri di più</a>
             </div>
           </div>
           
@@ -261,7 +288,7 @@
             <div class="card-body">
               <h5 class="card-title">Pizza Diavola</h5>
               <p class="card-text">Un classico ricco di sapore con salame piccante.</p>
-              <a href="#" class="btn btn-primary">Scopri di più</a>
+              <a href="#" class="btn btn-third">Scopri di più</a>
             </div>
           </div>
           
@@ -270,7 +297,7 @@
             <div class="card-body">
               <h5 class="card-title">Pizza Vegetariana</h5>
               <p class="card-text">Colori e freschezza con le verdure più gustose.</p>
-              <a href="#" class="btn btn-primary">Scopri di più</a>
+              <a href="#" class="btn btn-third">Scopri di più</a>
             </div>
           </div>
           
@@ -279,7 +306,7 @@
             <div class="card-body">
               <h5 class="card-title">Pizza Capricciosa</h5>
               <p class="card-text"> Con: funghi, prosciutto, carciofi e olive.</p>
-              <a href="#" class="btn btn-primary">Scopri di più</a>
+              <a href="#" class="btn btn-third">Scopri di più</a>
             </div>
           </div>
           
@@ -288,7 +315,7 @@
             <div class="card-body">
               <h5 class="card-title">Pizza Quattro Stagioni</h5>
               <p class="card-text">Ogni morso è un viaggio tra quattro diverse stagioni!</p>
-              <a href="#" class="btn btn-primary">Scopri di più</a>
+              <a href="#" class="btn btn-third">Scopri di più</a>
             </div>
           </div>
           
@@ -297,7 +324,7 @@
             <div class="card-body">
               <h5 class="card-title">Pizza 4 Formaggi</h5>
               <p class="card-text">Una cremosità irresistibile con quattro formaggi.</p>
-              <a href="#" class="btn btn-primary">Scopri di più</a>
+              <a href="#" class="btn btn-third">Scopri di più</a>
             </div>
           </div>
         </div>
@@ -306,25 +333,23 @@
 
      
     
-     
-
     <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="center">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="center">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Wl9E6mVHfJ7SkHjha6IOZQ3iQQVRdfWlH7O/+ErUmKkZ0x" crossorigin="anonymous"></script>
   </body>
