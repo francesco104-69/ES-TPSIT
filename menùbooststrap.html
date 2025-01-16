@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+
+    <style>
+      body {
+        background: url('https://st2.depositphotos.com/1175677/12327/v/450/depositphotos_123277816-stock-illustration-black-wood-background-wallpaper-backdrop.jpg') repeat;
+        color: #0e0d0d;
+        font-family: 'Poppins', sans-serif;
+      }
+      .navbar {
+        background-color: #0202029d;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 40px;
+      }
+
+
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+        font-size: 2.5rem;  
+        font-weight: bold;
+        color: #ffcc00;  
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);  
+      }
+
+
+      .navbar-brand img {
+        margin-right: 35px;
+        width: 60px;  
+        height: 60px;
+      }
+
+
+      .search-bar {
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50px;
+        overflow: hidden;
+        background-color: #1e1e1e;
+        box-shadow: 0 4px 6px rgba(108, 103, 103, 0.2);
+      }
+
+
+      .search-bar input {
+        width: 85%;
+        padding: 10px;
+        border: none;
+        border-radius: 50px 0 0 50px;
+        outline: none;
+        background-color: transparent;
+        color: #dddd18df;
+        font-size: 16px;
+      }
+
+
+      .search-bar input::placeholder {
+        color: #b1a613;
+      }
+
+
+      .search-bar button {
+        background-color: #ffcc00;
+        border: none;
+        padding: 10px 15px;
+        font-weight: bold;
+        border-radius: 0 50px 50px 0;
+        cursor: pointer;
+      }
+
+
+      .search-bar button:hover {
+        background-color: #e6b800;
+      }
+
+
+      .search-bar input:focus {
+        background-color: #333;
+      }
+
+
+      .card {
+        background-color: #111010d5;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(134, 133, 133, 0.3);
+        color: #e7e6e3;
+      }
+
+
+      .card-title {
+        color: #edc70b;
+        font-weight: bold;
+      }
+
+
+      .btn-primary {
+        background-color: #9e9696dc;
+        color: black;
+        border: none;
+        font-weight: bold;
+      }
+
+
+      .btn-primary:hover {
+        background-color: #1b1a1ada;
+        color:white;
+      }
+      .btn-secondary {
+        background-color: #d8b133dc;
+        color: black;
+        border: none;
+        font-weight: bold;
+      }
+      .btn-secondary:hover {
+        background-color: #0f0f0fda;
+        color:white;
+      }
+      .btn-third {
+        background-color: #d8b133dc;
+        color: black;
+        border: none;
+        font-weight: bold;
+      }
+      .btn-third:hover {
+        background-color: #0f0f0fda;
+        color:white;
+      }
+      .carousel {
+        max-width: 200%;
+        height: 450px;
+        margin: auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.466);
+      }
+
+
+      .carousel img {
+        height: 450px;
+        object-fit: cover;
+      }
+
+
+      .carousel-caption {
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        padding: 10px 15px;
+      }
+
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        filter: invert(1);
+      }
+
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        background-color: rgba(41, 39, 39, 0.842);
+        border-radius: 60%;
+        padding: 10px;
+      }
+
+
+      .icon-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+
+
+      .icon-grid .card {
+        width: 20rem;
+        text-align: center;
+      }
+
+
+      .icon-grid img {
+        border-bottom: 2px solid #ffcc00;
+      }
+
+
+       
+      .blockquote p {
+        font-size: 100px;
+        font-weight: bold;
+        color: #d6c149;
+      }
+
+
+      .blockquote-footer {
+        font-size: 25px;  
+        font-weight: bold;
+        color: #e7e6e3;
+      }
+      .pagination {
+        justify-content: center;
+        margin-top: 40px;
+      }
+
+
+      .pagination .page-item .page-link {
+        border-radius: 50px;
+        background-color: #444;
+        color: #fff;
+        transition: background-color 0.3s ease;
+      }
+
+
+      .pagination .page-item .page-link:hover {
+        background-color: #ffcc00;
+      }
+      .topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #9091889d;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .topnav a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 20px;  
+    font-weight: bold;
+    margin: 0 15px;
+    padding: 12px 18px; 
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .topnav a:hover {
+    background-color: #ffcc00;
+    color: #0a0a09;
+  }
+
+  .topnav a.active {
+    background-color: #d7d00a;
+    color: rgb(18, 17, 17);
+  }
+
+  .topnav .icon {
+    display: none;
+    font-size: 26px; 
+    cursor: pointer;
+    color: #ffffff;
+  }
+
+  @media screen and (max-width: 768px) {
+    .topnav a:not(:first-child) {
+      display: none;
+    }
+
+    .topnav .icon {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .topnav.responsive {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+    }
+
+    .topnav.responsive a {
+      display: block;
+      width: 100%;
+      text-align: left;
+      margin: 5px 0;
+    }
+  }
+
+
+    </style>
+    <title>Lavori TPSIT</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="navbar-brand" href="#">
+       
+<img src="https://banner2.cleanpng.com/20180411/cvq/avf2w2x30.webp" alt="logo" width="100" height="50">
+        <span>Lavori TPSIT</span>
+      </a>
+      <div class="search-bar">
+        <input type="text" placeholder="Cerca nel sito...">
+        <button type="button">Cerca</button>
+      </div>
+    </nav>
+
+    <div class="topnav" id="myTopnav">
+        <a href="https://francesco104-69.github.io/ES-TPSIT/es1css.html" >ES 1 CSS</a>
+        <a href="https://francesco104-69.github.io/ES-TPSIT/Schedahtml.html">SCHEDA HTML</a>
+        <a href="https://francesco104-69.github.io/ES-TPSIT/js4.html">SCHEDA JS</a>
+        <a href="https://francesco104-69.github.io/ES-TPSIT/morra.html">MORRA CINESE</a>
+        <a href="javascript:void(0);" class="icon" onclick="toggleTopnav()">
+          <i class="fas fa-bars"></i> <!-- Icona moderna -->
+        </a>
+      </div>
+
+      <script>
+        function toggleTopnav() {
+          const topnav = document.getElementById("myTopnav");
+          if (topnav.className === "topnav") {
+            topnav.className += " responsive";
+          } else {
+            topnav.className = "topnav";
+          }
+        }
+      </script>
+     
+   
+     
+
+
+    <div class="container my-5 text-center">
+
+
+      <figure class="text-center">
+        <blockquote class="blockquote">
+          <p>I MIEI LAVORI!</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+           In questo sito troverai i lavori che ho svolto nell'arco della Terza superiore; SCOPRILI TUTTI!
+        </figcaption>
+      </figure>
+
+
+      <button  type="button" class="btn btn-primary">Scopri di Più!</button>
+      <button type="button" class="btn btn-secondary">Contattaci</button>
+
+
+      <div id="carouselExampleControls" class="carousel slide my-4" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://images.pexels.com/photos/6308163/pexels-photo-6308163.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="Pizza">
+            <div class="carousel-caption d-nonettps://cdn.prod.website-files.com/5dcc7f8 d-md-block">
+               
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src=" " class="d-block w-100" alt="Pizza">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>I nostri Interni</h5>
+              <p>Solo il meglio per il tuo confort.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://banner2.cleanpng.com/20180420/xwe/avfvs9lgf.webp" class="d-block w-100" alt="Pizza">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Pizzeria D'Asporto</h5>
+              <p>Offriamo anche il servizio di asporto.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+
+
+
+      <div class="container">
+        <div class="icon-grid">
+   
+          <div class="card">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/css-icon.png" class="card-img-top" alt="Pizza Margherita">
+            <div class="card-body">
+              <p class="card-text">linguaggio usato per definire la formattazione di documenti HTML, XHTML e XML, ad esempio i siti web e relative pagine web.</p>
+              <a href="https://francesco104-69.github.io/ES-TPSIT/es1css.html" class="btn btn-third" >Scori di Più!</a>
+               
+            </div>
+          </div>
+         
+          <div class="card">
+            <img src="https://cdn-jghdn.nitrocdn.com/WaAKrPwVavvRtmiuchNkiowpZvENVGmM/assets/images/optimized/rev-ae4f639/www.homehost.com.br/blog/wp-content/uploads/2023/06/html5-bg.png" class="card-img-top"  alt="Pizza Pepperoni">
+            <div class="card-body">
+              <h5 class="card-title">Scheda HTML</h5>
+              <p class="card-text">L'HyperText Markup Language, comunemente noto con l'acronimo HTML, è il linguaggio di marcatura più usato per i documenti web.</p>
+              <a href="https://francesco104-69.github.io/ES-TPSIT/Schedahtml.html" class="btn btn-third" >Scori di Più!</a>
+            </div>
+          </div>
+         
+          <div class="card">
+            <img src="https://static.vecteezy.com/system/resources/previews/027/127/463/non_2x/javascript-logo-javascript-icon-transparent-free-png.png" class="card-img-top" alt="Pizza Vegetariana">
+            <div class="card-body">
+              <h5 class="card-title">Scheda JS</h5>
+              <p class="card-text">è un linguaggio di programmazione multi paradigma orientato agli eventi, utilizzato sia nella programmazione lato client web che lato server .</p>
+              <a href="https://francesco104-69.github.io/ES-TPSIT/js4.html" class="btn btn-third" >Scori di Più!</a>
+            </div>
+          </div>
+         
+          <div class="card">
+            <img src="https://alimentazionebambini.e-coop.it/wp-content/uploads/2014/12/Morra-cinese-900x900.webp" class="card-img-top" alt="Pizza Capricciosa">
+            <div class="card-body">
+              <h5 class="card-title">Morra Cinese</h5>
+              <p class="card-text">La morra cinese, conosciuta anche come sasso-carta-forbice, carta-forbice-sasso e con vari altri nomi, è un popolare gioco di mano..</p>
+              <a href="https://francesco104-69.github.io/ES-TPSIT/morra.html" class="btn btn-third" >Scori di Più!</a>
+            </div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+     
+   
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="center">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Wl9E6mVHfJ7SkHjha6IOZQ3iQQVRdfWlH7O/+ErUmKkZ0x" crossorigin="anonymous"></script>
+  </body>
+</html>
