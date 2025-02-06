@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottoni con Timestamp</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button onclick="recordTime(0)">Bottone 1</button>
+        <button onclick="recordTime(1)">Bottone 2</button>
+        <button onclick="recordTime(2)">Bottone 3</button>
+        <button onclick="recordTime(3)">Bottone 4</button>
+    </div>
+    
+    <div id="output"></div>
+    
+    <script>
+        let firstClickTime = null;
+        let timeDifferences = [];
+
+        function recordTime(buttonIndex) {
+            let now = new Date();
+            let timestamp = now.toLocaleString() + "." + now.getMilliseconds();
+            document.getElementById("output").innerHTML += `Bottone ${buttonIndex + 1} premuto: ${timestamp}<br>`;
+            
+            if (firstClickTime === null) {
+                firstClickTime = now;
+            } else {
+                let diff = now - firstClickTime; // Differenza in millisecondi
+                let seconds = Math.floor(diff / 1000);
+                let milliseconds = diff % 1000;
+                timeDifferences.push({ seconds, milliseconds });
+            }
+        }
+    </script>
+</body>
+</html>
