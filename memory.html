@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html lang="it" data-bs-theme="dark">
   <head>
     <meta charset="utf-8">
@@ -37,11 +37,14 @@
       /* Griglia dei pulsanti */
       .grid-container {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr); /* Modifica a 3 colonne */
         gap: 10px;
         margin-top: 50px;
         justify-content: center; /* Centro i pulsanti */
         align-items: center;
+        max-width: 350px; /* Limitato per adattarsi al layout */
+        margin-left: auto;
+        margin-right: auto; /* Centrato orizzontalmente */
       }
 
       .btn-memory {
@@ -81,6 +84,7 @@
       .container {
         max-width: 800px;
         margin: 0 auto;
+        text-align: center;
       }
 
       .btn-start {
@@ -158,7 +162,7 @@
       <div id="score" class="mt-3">Punteggio: 0</div>
       <div id="message" class="mt-2"></div>
       
-      <!-- Griglia di pulsanti -->
+      <!-- Griglia di pulsanti (modificata per 9 pulsanti) -->
       <div class="grid-container">
         <button class="btn btn-secondary btn-memory" data-id="0"></button>
         <button class="btn btn-secondary btn-memory" data-id="1"></button>
@@ -169,13 +173,6 @@
         <button class="btn btn-secondary btn-memory" data-id="6"></button>
         <button class="btn btn-secondary btn-memory" data-id="7"></button>
         <button class="btn btn-secondary btn-memory" data-id="8"></button>
-        <button class="btn btn-secondary btn-memory" data-id="9"></button>
-        <button class="btn btn-secondary btn-memory" data-id="10"></button>
-        <button class="btn btn-secondary btn-memory" data-id="11"></button>
-        <button class="btn btn-secondary btn-memory" data-id="12"></button>
-        <button class="btn btn-secondary btn-memory" data-id="13"></button>
-        <button class="btn btn-secondary btn-memory" data-id="14"></button>
-        <button class="btn btn-secondary btn-memory" data-id="15"></button>
       </div>
     </div>
 
