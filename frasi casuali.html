@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore di Frasi Casuali</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgb(245, 239, 239);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            width: 100%;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: rgb(0, 0, 0);
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #frase {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Generatore di Frasi Casuali</h1>
+
+    <select id="soggetto">
+        <option value="">Scegli un soggetto</option>
+    </select>
+
+    <select id="verbo">
+        <option value="">Scegli un verbo</option>
+    </select>
+
+    <select id="complemento">
+        <option value="">Scegli un complemento</option>
+    </select>
+
+    <button onclick="generaFrase()">Genera Frase</button>
+
+    <div id="frase"></div>
+</div>
+
+<script>
+    // Dati precaricati
+    const soggetti = ["Mario", "Luca", "Giulia", "Anna", "Francesco", "Elena", "Roberto", "Sara", "Davide", "Chiara"];
+    const verbi = ["mangia", "corre", "legge", "scrive", "disegna", "parla", "cammina", "guarda", "ascolta", "gioca"];
+    const complementi = ["una mela", "nel parco", "un libro", "una lettera", "un quadro", "al telefono", "sul marciapiede", "la TV", "musica", "a calcio"];
+
+    // Funzione per popolare i select con gli elementi degli array
+    function popolaSelect() {
+        const soggettoSelect = document.getElementById("soggetto");
+        const verboSelect = document.getElementById("verbo");
+        const complementoSelect = document.getElementById("complemento");
+
+        soggetti.forEach(soggetto => {
+            let option = document.createElement("option");
+            option.value = soggetto;
+            option.textContent = soggetto;
+            soggettoSelect.appendChild(option);
+        });
+
+        verbi.forEach(verbo => {
+            let option = document.createElement("option");
+            option.value = verbo;
+            option.textContent = verbo;
+            verboSelect.appendChild(option);
+        });
+
+        complementi.forEach(complemento => {
+            let option = document.createElement("option");
+            option.value = complemento;
+            option.textContent = complemento;
+            complementoSelect.appendChild(option);
+        });
+    }
+
+    // Funzione per generare la frase casuale
+    function generaFrase() {
+        const soggetto = document.getElementById("soggetto").value;
+        const verbo = document.getElementById("verbo").value;
+        const complemento = document.getElementById("complemento").value;
+
+        if (soggetto && verbo && complemento) {
+            document.getElementById("frase").textContent = `${soggetto} ${verbo} ${complemento}`;
+        } else {
+            document.getElementById("frase").textContent = "Per favore, seleziona un soggetto, un verbo e un complemento!";
+        }
+    }
+
+    // Popola i select al caricamento della pagina
+    popolaSelect();
+</script>
+
+</body>
+</html>
