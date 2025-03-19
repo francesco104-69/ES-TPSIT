@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operazioni con Stringhe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        .output p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Operazioni con Stringhe</h1>
+    <form id="inputForm">
+        <label for="stringaA">Stringa A:</label>
+        <input type="text" id="stringaA" name="stringaA" required><br><br>
+
+        <label for="stringaB">Stringa B:</label>
+        <input type="text" id="stringaB" name="stringaB" required><br><br>
+
+        <button type="submit">Calcola</button>
+    </form>
+
+    <div class="output" id="output">
+        <!-- Risultati verranno visualizzati qui -->
+    </div>
+
+    <script>
+        // Funzione per calcolare la lunghezza delle stringhe
+        function calcolaLunghezza(stringa) {
+            return stringa.length;
+        }
+
+        // Funzione per invertire una stringa
+        function invertiStringa(stringa) {
+            return stringa.split('').reverse().join('');
+        }
+
+        // Funzione per unire due stringhe
+        function unisciStringhe(stringaA, stringaB) {
+            return stringaA + stringaB;
+        }
+
+        // Funzione per calcolare la somma delle lunghezze e controllare la lunghezza di B
+        function controllaLunghezza(stringaA, stringaB) {
+            const lunghezzaA = calcolaLunghezza(stringaA);
+            const lunghezzaB = calcolaLunghezza(stringaB);
+            const sommaLunghezze = lunghezzaA + lunghezzaB;
+
+            let messaggio = "";
+            if (lunghezzaB > 20) {
+                messaggio = "Attenzione: la stringa B è troppo lunga!";
+            }
+
+            return { sommaLunghezze, messaggio };
+        }
+
+        // Gestione del form
+        document.getElementById('inputForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Previene il ricaricamento della pagina
+
+            // Recupera i valori inseriti dall'utente
+            const stringaA = document.getElementById('stringaA').value;
+            const stringaB = document.getElementById('stringaB').value;
+
+            // Calcola le lunghezze
+            const lunghezzaA = calcolaLunghezza(stringaA);
+            const lunghezzaB = calcolaLunghezza(stringaB);
+
+            // Inverte le stringhe
+            const stringaAInvertita = invertiStringa(stringaA);
+            const stringaBInvertita = invertiStringa(stringaB);
+
+            // Unisce le stringhe
+            const stringaUnita = unisciStringhe(stringaA, stringaB);
+
+            // Controlla la lunghezza di B e calcola la somma delle lunghezze
+            const { sommaLunghezze, messaggio } = controllaLunghezza(stringaA, stringaB);
+
+            // Visualizza i risultati nel DOM
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+                <p>Lunghezza di A: ${lunghezzaA}</p>
+                <p>Lunghezza di B: ${lunghezzaB}</p>
+                <p>Stringa A invertita: ${stringaAInvertita}</p>
+                <p>Stringa B invertita: ${stringaBInvertita}</p>
+                <p>Stringhe unite: ${stringaUnita}</p>
+                <p>Somma delle lunghezze: ${sommaLunghezze}</p>
+                <p style="color: red;">${messaggio}</p>
+            `;
+        });
+    </script>
+</body>
+</html>
