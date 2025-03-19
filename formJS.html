@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolo Output con Funzione Sigmoide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #output1, #output2 {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Inserisci quattro numeri</h1>
+    <form id="inputForm">
+        <label for="a">Numero A:</label>
+        <input type="number" id="a" name="a" required><br><br>
+
+        <label for="b">Numero B:</label>
+        <input type="number" id="b" name="b" required><br><br>
+
+        <label for="c">Numero C:</label>
+        <input type="number" id="c" name="c" required><br><br>
+
+        <label for="d">Numero D:</label>
+        <input type="number" id="d" name="d" required><br><br>
+
+        <button type="submit">Calcola Output</button>
+    </form>
+
+    <h2>Risultati:</h2>
+    <p id="output1"></p>
+    <p id="output2"></p>
+
+    <script>
+        // Funzione Sigmoide
+        function sigmoid(x) {
+            return 1 / (1 + Math.exp(-x));
+        }
+
+        // Funzione principale per calcolare gli output
+        function calculateOutputs(a, b, c, d) {
+            // Primo output: somma dei quattro numeri
+            const sum = a + b + c + d;
+
+            // Secondo output: applicazione della funzione Sigmoide alla somma
+            const sigmoidOutput = sigmoid(sum);
+
+            // Restituisce i due output
+            return [sum, sigmoidOutput];
+        }
+
+        // Gestione del form
+        document.getElementById('inputForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Previene il ricaricamento della pagina
+
+            // Recupera i valori inseriti dall'utente
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+            const d = parseFloat(document.getElementById('d').value);
+
+            // Calcola gli output
+            const [output1, output2] = calculateOutputs(a, b, c, d);
+
+            // Visualizza i risultati nella pagina
+            document.getElementById('output1').innerText = "Primo output (somma): " + output1;
+            document.getElementById('output2').innerText = "Secondo output (sigmoid): " + output2.toFixed(4); // Arrotonda a 4 decimali
+        });
+    </script>
+</body>
+</html>
