@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funzioni di Attivazione Neurale</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulazione Neurone Artificiale</h1>
+    <p>Inserisci 4 valori di input per simulare l'attivazione di un neurone:</p>
+    
+    <form id="neuronForm">
+        <div class="form-group">
+            <label for="inputA">Input A:</label>
+            <input type="number" id="inputA" step="any" required>
+        </div>
+        <div class="form-group">
+            <label for="inputB">Input B:</label>
+            <input type="number" id="inputB" step="any" required>
+        </div>
+        <div class="form-group">
+            <label for="inputC">Input C:</label>
+            <input type="number" id="inputC" step="any" required>
+        </div>
+        <div class="form-group">
+            <label for="inputD">Input D:</label>
+            <input type="number" id="inputD" step="any" required>
+        </div>
+        <button type="submit">Calcola</button>
+    </form>
+    
+    <div id="resultContainer" class="result" style="display: none;">
+        <h2>Risultati:</h2>
+        <p><strong>Somma pesata:</strong> <span id="output1"></span></p>
+        <p><strong>Attivazione Sigmoid:</strong> <span id="output2"></span></p>
+        <p id="activationStatus"></p>
+    </div>
+
+    <script>
+        document.getElementById('neuronForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Leggi i valori di input
+            const a = parseFloat(document.getElementById('inputA').value);
+            const b = parseFloat(document.getElementById('inputB').value);
+            const c = parseFloat(document.getElementById('inputC').value);
+            const d = parseFloat(document.getElementById('inputD').value);
+            
+            // Calcola i risultati
+            const results = neuronActivation(a, b, c, d);
+            
+            // Mostra i risultati
+            document.getElementById('output1').textContent = results[0].toFixed(4);
+            document.getElementById('output2').textContent = results[1].toFixed(4);
+            
+            // Determina lo stato di attivazione
+            const statusElement = document.getElementById('activationStatus');
+            if (results[1] > 0.7) {
+                statusElement.textContent = "Neurone fortemente attivato!";
+                statusElement.style.color = "green";
+            } else if (results[1] > 0.3) {
+                statusElement.textContent = "Neurone moderatamente attivato";
+                statusElement.style.color = "orange";
+            } else {
+                statusElement.textContent = "Neurone poco attivato";
+                statusElement.style.color = "red";
+            }
+            
+            document.getElementById('resultContainer').style.display = 'block';
+        });
+        
+        // Funzione di attivazione del neurone
+        function neuronActivation(a, b, c, d) {
+            // Primo output: somma pesata degli input
+            // Assegno pesi arbitrari per simulare l'importanza di ogni input
+            const weightA = 0.5;
+            const weightB = -0.2;
+            const weightC = 0.8;
+            const weightD = -0.1;
+            const bias = 0.3; // termine di bias
+            
+            const weightedSum = (a * weightA) + (b * weightB) + (c * weightC) + (d * weightD) + bias;
+            
+            // Secondo output: applicazione della funzione di attivazione sigmoid
+            const activation = sigmoid(weightedSum);
+            
+            return [weightedSum, activation];
+        }
+        
+        // Funzione sigmoid (funzione di attivazione)
+        function sigmoid(x) {
+            return 1 / (1 + Math.exp(-x));
+        }
+    </script>
+</body>
+</html>
