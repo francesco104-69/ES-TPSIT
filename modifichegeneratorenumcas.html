@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grafico Numeri Casuali</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="myChart" width="400" height="200"></canvas>
+    <script>
+        // Qui inserisci il codice JavaScript precedente
+        
+        // Configurazione del grafico
+        let ctx = document.getElementById('myChart').getContext('2d');
+        let chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [], // Verranno popolate automaticamente
+                datasets: [
+                    {
+                        label: 'Numeri Casuali',
+                        data: [],
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Rapporti',
+                        data: [],
+                        borderColor: 'rgb(255, 99, 132)',
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Modifica la funzione dell'intervallo per aggiornare il grafico
+        const intervallo = setInterval(() => {
+            // ... (tutto il codice precedente)
+            
+            // Aggiorna il grafico
+            chart.data.labels.push(contatore.toString());
+            chart.data.datasets[0].data.push(numeroCasuale);
+            
+            if (arrayNumeriCasuali.length > 1) {
+                chart.data.datasets[1].data.push(rapporto);
+            }
+            
+            chart.update();
+            
+            // ... (resto del codice)
+        }, 500);
+    </script>
+</body>
+</html>
