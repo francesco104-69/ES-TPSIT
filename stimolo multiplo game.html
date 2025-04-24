@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
@@ -22,9 +22,9 @@
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     }
 
-    h1 {
+    h1, h2 {
       color: #ffffff;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     #stimulus {
@@ -113,6 +113,22 @@
       display: block;
       margin: 20px auto 0 auto;
     }
+
+    #ranking {
+      margin-top: 40px;
+    }
+
+    #ranking-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    #ranking-list li {
+      background-color: #2a2a2a;
+      margin: 6px 0;
+      padding: 10px;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
@@ -158,6 +174,11 @@
       <div class="stat-box"><div>Precisione:</div><div id="accuracy">0%</div></div>
       <div class="stat-box"><div>Tempo medio:</div><div id="avg-time">0ms</div></div>
     </div>
+
+    <div id="ranking">
+      <h2>Classifica Ultime Partite</h2>
+      <ul id="ranking-list"></ul>
+    </div>
   </div>
 
   <script>
@@ -193,6 +214,7 @@
     function init() {
       startBtn.addEventListener('click', startGame);
       document.addEventListener('keydown', handleKeyPress);
+      loadRanking();
     }
 
     function startGame() {
@@ -262,6 +284,15 @@
       config.totalTime += responseTime;
 
       updateStats();
+
+      if (config.responses >= 10) {
+        config.gameActive = false;
+        saveScore();
+        loadRanking();
+        alert("Gioco terminato!");
+        return;
+      }
+
       showNextStimulus();
     }
 
@@ -283,7 +314,37 @@
       avgTimeElement.textContent = `${avgTime}ms`;
     }
 
+    function saveScore() {
+      const accuracy = config.responses > 0 ? Math.round((config.correct / config.responses) * 100) : 0;
+      const avgTime = config.responses > 0 ? Math.round(config.totalTime / config.responses) : 0;
+      const scoreEntry = {
+        timestamp: new Date().toLocaleString(),
+        correct: config.correct,
+        responses: config.responses,
+        accuracy: accuracy,
+        avgTime: avgTime
+      };
+
+      let scores = JSON.parse(localStorage.getItem('stimulusScores')) || [];
+      scores.unshift(scoreEntry);
+      scores = scores.slice(0, 5);
+      localStorage.setItem('stimulusScores', JSON.stringify(scores));
+    }
+
+    function loadRanking() {
+      const scores = JSON.parse(localStorage.getItem('stimulusScores')) || [];
+      const list = document.getElementById('ranking-list');
+      list.innerHTML = '';
+
+      scores.forEach((score, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${index + 1}.</strong> ${score.timestamp} - Corrette: ${score.correct}/${score.responses}, Precisione: ${score.accuracy}%, Tempo Medio: ${score.avgTime}ms`;
+        list.appendChild(li);
+      });
+    }
+
     init();
   </script>
 </body>
 </html>
+
