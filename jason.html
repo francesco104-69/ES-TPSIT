@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stimolo Multiplo - Scelta Semplice</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #game-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    h1, h2 {
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    #stimulus {
+      width: 200px;
+      height: 200px;
+      margin: 30px auto 10px auto;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+      transition: all 0.3s ease-in-out;
+      background-color: #444;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #3a3a3a;
+      color: #f1f1f1;
+      border: 1px solid #555;
+      border-radius: 8px;
+      transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+    }
+
+    button:hover {
+      background-color: #5a5a5a;
+      transform: scale(1.05);
+    }
+
+    #controls {
+      margin: 20px 0;
+    }
+
+    #stats {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      background-color: #2a2a2a;
+      padding: 15px 20px;
+      border-radius: 10px;
+      min-width: 100px;
+      text-align: center;
+      margin: 10px;
+    }
+
+    #settings {
+      margin-top: 20px;
+      text-align: left;
+      padding: 20px;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+
+    .setting-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    select, input {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #555;
+      background-color: #2a2a2a;
+      color: white;
+    }
+
+    select:focus, input:focus {
+      outline: none;
+      border-color: #888;
+    }
+
+    #start-btn {
+      display: block;
+      margin: 20px auto 0 auto;
+    }
+
+    #ranking {
+      margin-top: 40px;
+    }
+
+    #ranking-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    #ranking-list li {
+      background-color: #2a2a2a;
+      margin: 6px 0;
+      padding: 10px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <h1>Stimolo Multiplo</h1>
+
+    <div id="settings">
+      <div class="setting-group">
+        <label for="difficulty">Difficoltà:</label>
+        <select id="difficulty">
+          <option value="2">2 stimoli (base)</option>
+          <option value="3">3 stimoli</option>
+          <option value="4">4 stimoli</option>
+        </select>
+      </div>
+
+      <div class="setting-group">
+        <label for="modality">Modalità:</label>
+        <select id="modality">
+          <option value="visual">Solo visivo</option>
+          <option value="audio">Solo uditivo</option>
+          <option value="both">Visivo e uditivo</option>
+        </select>
+      </div>
+
+      <div class="setting-group">
+        <label for="duration">Durata stimolo (ms):</label>
+        <input type="number" id="duration" value="1000" min="100" max="5000" />
+      </div>
+    </div>
+
+    <div id="stimulus"></div>
+    <button id="start-btn">Inizia Gioco</button>
+
+    <div id="controls" style="display: none;">
+      <p>Premi il tasto corrispondente:</p>
+      <div id="response-buttons"></div>
+    </div>
+
+    <div id="stats">
+      <div class="stat-box"><div>Risposte:</div><div id="responses">0</div></div>
+      <div class="stat-box"><div>Corrette:</div><div id="correct">0</div></div>
+      <div class="stat-box"><div>Precisione:</div><div id="accuracy">0%</div></div>
+      <div class="stat-box"><div>Tempo medio:</div><div id="avg-time">0ms</div></div>
+    </div>
+
+    <div id="ranking">
+      <h2>Classifica Ultime Partite</h2>
+      <ul id="ranking-list"></ul>
+      <button id="export-json-btn">Esporta JSON</button>
+    </div>
+  </div>
+
+  <script>
+    const config = {
+      difficulty: 2,
+      modality: 'visual',
+      stimulusDuration: 1000,
+      colors: ['red', 'blue', 'green', 'yellow'],
+      colorNames: ['Rosso', 'Blu', 'Verde', 'Giallo'],
+      sounds: ['sound1', 'sound2', 'sound3', 'sound4'],
+      keyBindings: ['q', 'w', 'e', 'r'],
+      currentStimulus: null,
+      startTime: null,
+      responses: 0,
+      correct: 0,
+      totalTime: 0,
+      gameActive: false,
+      timeoutId: null
+    };
+
+    const stimulusElement = document.getElementById('stimulus');
+    const controlsElement = document.getElementById('controls');
+    const responseButtonsElement = document.getElementById('response-buttons');
+    const responsesElement = document.getElementById('responses');
+    const correctElement = document.getElementById('correct');
+    const accuracyElement = document.getElementById('accuracy');
+    const avgTimeElement = document.getElementById('avg-time');
+    const startBtn = document.getElementById('start-btn');
+    const difficultySelect = document.getElementById('difficulty');
+    const modalitySelect = document.getElementById('modality');
+    const durationInput = document.getElementById('duration');
+
+    function init() {
+      startBtn.addEventListener('click', startGame);
+      document.addEventListener('keydown', handleKeyPress);
+      document.getElementById('export-json-btn').addEventListener('click', exportToJson);
+      loadRanking();
+    }
+
+    function startGame() {
+      config.responses = 0;
+      config.correct = 0;
+      config.totalTime = 0;
+      updateStats();
+
+      config.difficulty = parseInt(difficultySelect.value);
+      config.modality = modalitySelect.value;
+      config.stimulusDuration = parseInt(durationInput.value);
+
+      controlsElement.style.display = 'block';
+      setupResponseButtons();
+
+      config.gameActive = true;
+      showNextStimulus();
+    }
+
+    function setupResponseButtons() {
+      responseButtonsElement.innerHTML = '';
+      for (let i = 0; i < config.difficulty; i++) {
+        const button = document.createElement('button');
+        button.textContent = `${config.colorNames[i]} (${config.keyBindings[i].toUpperCase()})`;
+        button.dataset.index = i;
+        button.addEventListener('click', () => handleResponse(i));
+        responseButtonsElement.appendChild(button);
+      }
+    }
+
+    function showNextStimulus() {
+      if (!config.gameActive) return;
+      const randomIndex = Math.floor(Math.random() * config.difficulty);
+      config.currentStimulus = randomIndex;
+
+      if (config.modality === 'visual' || config.modality === 'both') {
+        stimulusElement.style.backgroundColor = config.colors[randomIndex];
+        stimulusElement.textContent = config.colorNames[randomIndex];
+      } else {
+        stimulusElement.style.backgroundColor = 'gray';
+        stimulusElement.textContent = 'ASCOLTA';
+      }
+
+      if (config.modality === 'audio' || config.modality === 'both') {
+        console.log(`Playing sound: ${config.sounds[randomIndex]}`);
+      }
+
+      config.startTime = new Date().getTime();
+
+      if (config.timeoutId) clearTimeout(config.timeoutId);
+      config.timeoutId = setTimeout(hideStimulus, config.stimulusDuration);
+    }
+
+    function hideStimulus() {
+      stimulusElement.style.backgroundColor = '#444';
+      stimulusElement.textContent = '';
+    }
+
+    function handleResponse(responseIndex) {
+      if (!config.gameActive || config.currentStimulus === null) return;
+
+      const responseTime = new Date().getTime() - config.startTime;
+      config.responses++;
+      if (responseIndex === config.currentStimulus) {
+        config.correct++;
+      }
+      config.totalTime += responseTime;
+
+      updateStats();
+
+      if (config.responses >= 10) {
+        config.gameActive = false;
+        saveScore();
+        loadRanking();
+        alert("Gioco terminato!");
+        return;
+      }
+
+      showNextStimulus();
+    }
+
+    function handleKeyPress(e) {
+      if (!config.gameActive || config.currentStimulus === null) return;
+      const key = e.key.toLowerCase();
+      const responseIndex = config.keyBindings.indexOf(key);
+      if (responseIndex !== -1 && responseIndex < config.difficulty) {
+        handleResponse(responseIndex);
+      }
+    }
+
+    function updateStats() {
+      responsesElement.textContent = config.responses;
+      correctElement.textContent = config.correct;
+      const accuracy = config.responses > 0 ? Math.round((config.correct / config.responses) * 100) : 0;
+      accuracyElement.textContent = `${accuracy}%`;
+      const avgTime = config.responses > 0 ? Math.round(config.totalTime / config.responses) : 0;
+      avgTimeElement.textContent = `${avgTime}ms`;
+    }
+
+    function saveScore() {
+      const accuracy = config.responses > 0 ? Math.round((config.correct / config.responses) * 100) : 0;
+      const avgTime = config.responses > 0 ? Math.round(config.totalTime / config.responses) : 0;
+      const scoreEntry = {
+        timestamp: new Date().toLocaleString(),
+        correct: config.correct,
+        responses: config.responses,
+        accuracy: accuracy,
+        avgTime: avgTime
+      };
+
+      let scores = JSON.parse(localStorage.getItem('stimulusScores')) || [];
+      scores.unshift(scoreEntry);
+      scores = scores.slice(0, 5);
+      localStorage.setItem('stimulusScores', JSON.stringify(scores));
+    }
+
+    function loadRanking() {
+      const scores = JSON.parse(localStorage.getItem('stimulusScores')) || [];
+      const list = document.getElementById('ranking-list');
+      list.innerHTML = '';
+
+      scores.forEach((score, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${index + 1}.</strong> ${score.timestamp} - Corrette: ${score.correct}/${score.responses}, Precisione: ${score.accuracy}%, Tempo Medio: ${score.avgTime}ms`;
+        list.appendChild(li);
+      });
+    }
+
+    function exportToJson() {
+      const scores = JSON.parse(localStorage.getItem('stimulusScores')) || [];
+      const jsonString = JSON.stringify(scores, null, 2);
+
+      const blob = new Blob([jsonString], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "stimulus_scores.json";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    init();
+  </script>
+</body>
+</html>
