@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEAM Who? | Indovina il personaggio</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        h1 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .description {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .game-area {
+            margin: 2rem 0;
+            min-height: 200px;
+        }
+        
+        .question {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: var(--border-radius);
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        button {
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+        
+        .btn-yes {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-no {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .btn-reset {
+            background-color: var(--primary);
+            color: white;
+            margin-top: 1rem;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .result {
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .character-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .character-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .character-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+        }
+        
+        .character-bio {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background: #eee;
+            border-radius: 20px;
+            margin: 1rem 0;
+            height: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>STEAM Who?</h1>
+        <p class="description">Pensa a un personaggio STEAM e rispondi alle domande</p>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        
+        <div class="game-area">
+            <div class="question" id="question"></div>
+            
+            <div class="buttons">
+                <button class="btn-yes" id="yes-btn">Sì</button>
+                <button class="btn-no" id="no-btn">No</button>
+            </div>
+        </div>
+        
+        <div class="result" id="result">
+            <div class="character-card">
+                <h2 class="character-name" id="character-name"></h2>
+                <img class="character-image" id="character-image" src="" alt="">
+                <p class="character-bio" id="character-bio"></p>
+            </div>
+            
+            <button class="btn-reset" id="reset-btn">Gioca di nuovo</button>
+        </div>
+    </div>
+
+    <script>
+        // Database migliorato dei personaggi STEAM
+        const characters = [
+            {
+                name: "Leonardo da Vinci",
+                bio: "Poliedrico genio del Rinascimento, fu pittore, inventore, scienziato e molto altro. Tra le sue opere più famose ci sono la Gioconda e l'Uomo Vitruviano.",
+                isInventor: true,
+                isArtist: true,
+                isScientist: true,
+                isModern: false,
+                isMathematician: true,
+                isEngineer: true,
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Leonardo_self.jpg/800px-Leonardo_self.jpg"
+            },
+            {
+                name: "Marie Curie",
+                bio: "Fisica e chimica pioniera nello studio della radioattività, prima donna a vincere un Nobel e unica persona ad averne vinti due in due campi diversi (fisica e chimica).",
+                isInventor: false,
+                isArtist: false,
+                isScientist: true,
+                isModern: false,
+                isMathematician: true,
+                isEngineer: false,
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Marie_Curie_c._1920s.jpg/800px-Marie_Curie_c._1920s.jpg"
+            },
+            {
+                name: "Steve Jobs",
+                bio: "Imprenditore e inventore visionario, co-fondatore di Apple Inc. Ha rivoluzionato l'industria tecnologica con prodotti come iPhone, iPad e Macintosh.",
+                isInventor: true,
+                isArtist: false,
+                isScientist: false,
+                isModern: true,
+                isMathematician: false,
+                isEngineer: false,
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP2.jpg/800px-Steve_Jobs_Headshot_2010-CROP2.jpg"
+            },
+            {
+                name: "Ada Lovelace",
+                bio: "Matematica inglese, considerata la prima programmatrice della storia per il suo lavoro sulla macchina analitica di Charles Babbage.",
+                isInventor: false,
+                isArtist: false,
+                isScientist: true,
+                isModern: false,
+                isMathematician: true,
+                isEngineer: false,
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Ada_Lovelace_portrait.jpg/800px-Ada_Lovelace_portrait.jpg"
+            },
+            {
+                name: "Alan Turing",
+                bio: "Matematico, logico e crittografo britannico, padre dell'informatica e dell'intelligenza artificiale. Decifrò il codice Enigma durante la seconda guerra mondiale.",
+                isInventor: true,
+                isArtist: false,
+                isScientist: true,
+                isModern: true,
+                isMathematician: true,
+                isEngineer: true,
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Alan_Turing_Aged_16.jpg/800px-Alan_Turing_Aged_16.jpg"
+            }
+        ];
+
+        // Albero decisionale migliorato
+        const questions = [
+            { text: "Il personaggio è un inventore?", property: "isInventor" },
+            { text: "Il personaggio è un artista?", property: "isArtist" },
+            { text: "Il personaggio è uno scienziato?", property: "isScientist" },
+            { text: "Il personaggio è vissuto nell'era moderna (XX-XXI secolo)?", property: "isModern" },
+            { text: "Il personaggio era un matematico?", property: "isMathematician" },
+            { text: "Il personaggio era un ingegnere?", property: "isEngineer" }
+        ];
+
+        // Classe Game per gestire lo stato del gioco
+        class STEAMGame {
+            constructor() {
+                this.currentQuestion = 0;
+                this.possibleCharacters = [...characters];
+                this.questionElement = document.getElementById('question');
+                this.resultElement = document.getElementById('result');
+                this.progressBar = document.getElementById('progress-bar');
+                this.characterName = document.getElementById('character-name');
+                this.characterImage = document.getElementById('character-image');
+                this.characterBio = document.getElementById('character-bio');
+                
+                this.init();
+            }
+            
+            init() {
+                this.updateQuestion();
+                this.setupEventListeners();
+            }
+            
+            setupEventListeners() {
+                document.getElementById('yes-btn').addEventListener('click', () => this.answerQuestion(true));
+                document.getElementById('no-btn').addEventListener('click', () => this.answerQuestion(false));
+                document.getElementById('reset-btn').addEventListener('click', () => this.resetGame());
+                
+                // Tasti keyboard
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'y') this.answerQuestion(true);
+                    if (e.key === 'n') this.answerQuestion(false);
+                    if (e.key === 'r') this.resetGame();
+                });
+            }
+            
+            updateQuestion() {
+                if (this.currentQuestion < questions.length) {
+                    this.questionElement.textContent = questions[this.currentQuestion].text;
+                    this.updateProgress();
+                }
+            }
+            
+            updateProgress() {
+                const progress = (this.currentQuestion / questions.length) * 100;
+                this.progressBar.style.width = `${progress}%`;
+            }
+            
+            answerQuestion(answer) {
+                const currentProperty = questions[this.currentQuestion].property;
+                this.possibleCharacters = this.possibleCharacters.filter(
+                    char => char[currentProperty] === answer
+                );
+                
+                this.currentQuestion++;
+                
+                if (this.currentQuestion >= questions.length || this.possibleCharacters.length <= 1) {
+                    this.endGame();
+                } else {
+                    this.updateQuestion();
+                }
+            }
+            
+            endGame() {
+                document.querySelector('.game-area').style.display = 'none';
+                this.resultElement.style.display = 'block';
+                
+                if (this.possibleCharacters.length === 1) {
+                    const character = this.possibleCharacters[0];
+                    this.characterName.textContent = character.name;
+                    this.characterImage.src = character.img;
+                    this.characterImage.alt = `Immagine di ${character.name}`;
+                    this.characterBio.textContent = character.bio;
+                } else if (this.possibleCharacters.length > 1) {
+                    this.characterName.textContent = "Ops! Non sono sicuro...";
+                    this.characterBio.textContent = "Potresti pensare a uno di questi personaggi: " + 
+                        this.possibleCharacters.map(c => c.name).join(', ');
+                    this.characterImage.style.display = 'none';
+                } else {
+                    this.characterName.textContent = "Non conosco questo personaggio!";
+                    this.characterBio.textContent = "Potresti insegnarmi qualcosa di nuovo!";
+                    this.characterImage.style.display = 'none';
+                }
+                
+                this.progressBar.style.width = '100%';
+            }
+            
+            resetGame() {
+                this.currentQuestion = 0;
+                this.possibleCharacters = [...characters];
+                document.querySelector('.game-area').style.display = 'block';
+                this.resultElement.style.display = 'none';
+                this.characterImage.style.display = 'block';
+                this.updateQuestion();
+            }
+        }
+
+        // Inizializza il gioco quando la pagina è caricata
+        document.addEventListener('DOMContentLoaded', () => {
+            new STEAMGame();
+        });
+    </script>
+</body>
+</html>
