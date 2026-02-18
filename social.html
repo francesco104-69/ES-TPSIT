@@ -1,0 +1,33 @@
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+
+const JSON_FILE = path.join(__dirname, 'post.json');
+
+// Rotta per visualizzare il form
+app.get('/post', (req, res) => {
+    res.send(`
+        <form method="POST" action="/post">
+            <input type="text" name="content" placeholder="Scrivi qualcosa..." required>
+            <button type="submit">Invia</button>
+        </form>
+    `);
+});
+
+// Rotta per salvare i dati
+app.post('/post', (req, res) => {
+    const newPost = { id: Date.now(), data: req.body.content };
+
+    // Leggi, aggiorna e scrivi sul file JSON
+    const data = fs.existsSync(JSON_FILE) ? JSON.parse(fs.readFileSync(JSON_FILE)) : [];
+    data.push(newPost);
+    
+    fs.writeFileSync(JSON_FILE, JSON.stringify(data, null, 2));
+    
+    res.send('Dato salvato con successo! <a href="/post">Torna indietro</a>');
+});
+
+app.listen(3000, () => console.log('Server in ascolto su http://localhost:3000/post'));
